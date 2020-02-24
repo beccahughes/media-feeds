@@ -65,14 +65,12 @@
     <h2>Retrieval of Media Feeds</h2>
 
     <p>
-      The user agent MUST fetch the media feed using a
-      <a data-cite="rfc7231#GET">GET</a> request with the appropriate
-      <a data-cite="rfc6265#cookie">cookies</a> (so that the site can identify
-      the user), <a data-cite="rfc7234#header.field.definitions">caching
-      headers</a> and the <a data-cite="rfc7231#header.accept">accept header</a>
-      will be set to <a data-cite="json-ld11#iana-considerations">
-      application/ld+json</a>. The site will return the <dfn>media feed document</dfn>
-      which MUST be <a data-cite="json-ld11#dfn-json-ld-document">valid JSON+LD</a> documents</a>.
+      The user agent MUST initiate a <a data-cite="FETCH#fetching">fetch</a>
+      with the <a data-cite="FETCH#concept-header-list">header list</a>
+      containing the <a data-cite="rfc7231#header.accept">accept header</a> set
+      to <a data-cite="json-ld11#iana-considerations">application/ld+json</a>.
+      The site will return the <dfn>media feed document</dfn> which MUST be a
+      <a data-cite="json-ld11#dfn-json-ld-document">valid JSON+LD</a> document</a>.
     </p>
 
     <p>
