@@ -74,9 +74,7 @@ The feed will contain a number of media items that are recommendations relevant 
     
 2.  [Thing > CreativeWork > Movie](https://schema.org/Movie)
     
-3.  [Thing > CreativeWork > Episode > TVEpisode](https://schema.org/TVEpisode)
-    
-4.  [Thing > CreativeWork > CreativeWorkSeason > TVSeason](https://schema.org/TVSeason)
+3.  [Thing > CreativeWork > CreativeWorkSeries > TVSeries](https://schema.org/TVSeries)
 
 There are some examples in the sections below about how these media items can be used for different use cases.
 
@@ -439,7 +437,7 @@ It is **required** that all media items should have the following properties:
     
 4. `datePublished` - the timestamp the content was published
     
-5. `duration` - the duration of the content
+5. `duration` - the duration of the content (only required for VideoObject and Movie)
     
 6. `isFamilyFriendly` - if the content is family friendly
     
@@ -467,15 +465,11 @@ If an object is a TV season the following properties **are required**:
     
 2. `numberOfEpisodes` - the total number of episodes a series has
 
-If an object is a TV series embedded in a TV episode or TV season, the following properties **are required**:
-
-1. `name` - the name of the content
+If an object is a TV series the following properties **are required**:
     
-2. `author` or `creator` - the author / creator of the content
+1. `numberOfEpisodes` - the total number of episodes a season has
     
-3. `numberOfEpisodes` - the total number of episodes a season has
-    
-4. `numberOfSeasons` - the total number of seasons a series has
+2. `numberOfSeasons` - the total number of seasons a series has
 
 If the `thumbnail` or `image` is an ImageObject the following properties **are required**:
 
