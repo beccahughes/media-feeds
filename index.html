@@ -75,13 +75,13 @@
 
     <p>
       The <a>media feed document</a> should be a
-      <a data-cite="schemaorg#DataFeed">DataFeed</a>. This has a
-      <a data-cite="schemaorg#provider">provider</a> property that contains an
-      <a data-cite="schemaorg#Organization">Organization</a> to describe the
-      <dfn>publishing web site</dfn>. The
-      <a data-cite="schemaorg#member">member</a> field on
-      <a data-cite="schemaorg#Organization">Organization</a> should
-      contain a <a data-cite="schemaorg#Person">Person</a> that contains the
+      <a data-cite="schema-org/DataFeed#">DataFeed</a>. This has a
+      <a data-cite="schema-org/provider#">provider</a> property that contains
+      an <a data-cite="schema-org/Organization#">Organization</a> to describe
+      the <dfn>publishing web site</dfn>. The
+      <a data-cite="schema-org/member#">member</a> field on
+      <a data-cite="schema-org/Organization#">Organization</a> should
+      contain a <a data-cite="schema-org/Person#">Person</a> that contains the
       details about the <dfn>currently logged in user</dfn>. The user agent can
       show this to the user to identifier which account the recommendations are
       coming from. This is especially important if the media site supports
@@ -99,16 +99,16 @@
         </li>
         <li>
           The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
-          set to <a data-cite="schemaorg#DataFeed">DataFeed</a> OR
-          <a data-cite="schemaorg#CompleteDataFeed">CompleteDataFeed</a>.
+          set to <a data-cite="schema-org/DataFeed#">DataFeed</a> OR
+          <a data-cite="schema-org/CompleteDataFeed#">CompleteDataFeed</a>.
         </li>
         <li>
-          The <a data-cite="schemaorg#member">provider</a> property MUST
-          contain a <a data-cite="schemaorg#Organization">Organization</a>
+          The <a data-cite="schema-org/member#">provider</a> property MUST
+          contain a <a data-cite="schema-org/Organization#">Organization</a>
           that is a valid <a>publishing web site</a>.
         </li>
         <li>
-          The <a data-cite="schemaorg#dataFeedElement">dataFeedElement</a>
+          The <a data-cite="schema-org/dataFeedElement#">dataFeedElement</a>
           property SHOULD be present. If present, it MUST contain valid
           <a>media feed items</a>.
         </li>
@@ -122,19 +122,19 @@
       <ul>
         <li>
           The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
-          set to <a data-cite="schemaorg#Organization">Organization</a>.
+          set to <a data-cite="schema-org/Organization#">Organization</a>.
         </li>
         <li>
-          The <a data-cite="schemaorg#name">name</a> property MUST contain
+          The <a data-cite="schema-org/name#">name</a> property MUST contain
           a valid non-empty string.
         </li>
         <li>
-          The <a data-cite="schemaorg#logo">logo</a> property MUST contain
+          The <a data-cite="schema-org/logo#">logo</a> property MUST contain
           a valid <a data-cite="url#urls">URL</a>.
         </li>
         <li>
-          The <a data-cite="schemaorg#member">member</a> property MUST
-          contain a <a data-cite="schemaorg#Person">Person</a> that is a
+          The <a data-cite="schema-org/member#">member</a> property MUST
+          contain a <a data-cite="schema-org/Person#">Person</a> that is a
           valid <a>currently logged in user</a>.
         </li>
       </ul>
@@ -147,18 +147,18 @@
       <ul>
         <li>
           The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
-          set to <a data-cite="schemaorg#Person">Person</a>.
+          set to <a data-cite="schema-org/Person#">Person</a>.
         </li>
         <li>
-          The <a data-cite="schemaorg#name">name</a> property MUST contain
+          The <a data-cite="schema-org/name#">name</a> property MUST contain
           a valid non-empty string.
         </li>
         <li>
-          The <a data-cite="schemaorg#name">image</a> property MUST contain
+          The <a data-cite="schema-org/name#">image</a> property MUST contain
           a valid <a data-cite="url#urls">URL</a>.
         </li>
         <li>
-          The <a data-cite="schemaorg#email">email</a> property SHOULD be
+          The <a data-cite="schema-org/email#">email</a> property SHOULD be
           present. If present, it MUST contain a valid
           <a data-cite="EMAIL#section-3.4">email address</a>.
         </li>
@@ -171,12 +171,12 @@
 
       <ul>
         <li>
-          <a data-cite="schemaorg#CompleteDataFeed">CompleteDataFeed</a> then
+          <a data-cite="schema-org/CompleteDataFeed#">CompleteDataFeed</a> then
           the user agent MUST discard any previously stored <a>media feed
           items</a>.
         </li>
         <li>
-          <a data-cite="schemaorg#DataFeed">DataFeed</a> then the user agent
+          <a data-cite="schema-org/DataFeed#">DataFeed</a> then the user agent
           MAY retain previously stored <a>media feed items</a>.
         </li>
       <ul>
