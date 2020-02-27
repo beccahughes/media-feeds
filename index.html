@@ -61,6 +61,63 @@
     </p>
   </section>
 
+  <section id="model">
+    <h2>Model</h2>
+
+    <p>
+      The <dfn>media feed store</dfn> stores media feeds that have been
+      discovered. There can only be one <a>media feed URL</a>
+      <a data-cite="HTML#concept-origin">per-origin</a>. If a user agent
+      discovers a new <a>media feed URL</a> for an
+      <a data-cite="HTML#concept-origin">origin</a> that already has a <a>media
+      feed URL</a> then we will replace the existing one.
+    </p>
+  </section>
+
+  <section id="discovery-of-media-feeds">
+    <h2>Discovery of Media Feeds</h2>
+
+    <p>
+      The site should advertise the Media Feed to the user agent by adding a
+      <a data-cite="HTML#link">link element</a> to the
+      <a data-cite="HTML#the-head-element">head element</a>, these are known as
+      the <dfn>eligible feed links</dfn>. The
+      <a data-cite="HTML#attr-hyperlink-href">href attribute</a> contains the
+      <dfn>media feed URL</dfn>.
+
+      The user agent MUST run the following steps for each <a>eligible feed link
+      </a> when the top level <a data-cite="HTML#document">Document</a> is
+      <a data-cite="HTML#ready-for-post-load-tasks">ready for post-load tasks</a>:
+
+      <ul>
+        <li>
+          If the <a data-cite="HTML#attr-hyperlink-type">type attribute</a> is
+          not set to
+          <a data-cite="json-ld11#iana-considerations">application/ld+json</a>
+          then return null
+        </li>
+        <li>
+          If the <a data-cite="HTML#linkTypes">link type</a> is not set to
+          <code>feed</code> then return null
+        </li>
+        <li>
+          If the <a>media feed URL</a> is not a valid
+          <a data-cite="url#urls">URL</a> then return an error
+        </li>
+        <li>
+          If the <a>media feed URL</a> is not the
+          <a data-cite="HTML#concept-origin">same origin</a> as the current
+          document then return an error
+        </li>
+        <li>
+          Store the <a>media feed URL</a> and
+          <a data-cite="HTML#concept-origin">origin</a> in the
+          <a>media feed store</a>
+        </li>
+      </ul>
+    </p>
+  </section>
+
   <section id="retrieval-of-media-feeds">
     <h2>Retrieval of Media Feeds</h2>
 
@@ -68,9 +125,17 @@
       The user agent MUST initiate a <a data-cite="FETCH#fetching">fetch</a>
       with the <a data-cite="FETCH#concept-header-list">header list</a>
       containing the <a data-cite="rfc7231#header.accept">accept header</a> set
-      to <a data-cite="json-ld11#iana-considerations">application/ld+json</a>.
-      The site will return the <dfn>media feed document</dfn> which MUST be a
+      to <a data-cite="json-ld11#iana-considerations">application/ld+json</a>
+      and the <a data-cite="FETCH#concept-request-redirect-mode">redirect
+      mode</a> set to <code>error</code>. The site will return the
+      <dfn>media feed document</dfn> which MUST be a
       <a data-cite="json-ld11#dfn-json-ld-document">valid JSON+LD</a> document</a>.
+    </p>
+
+    <p>
+      If the user agent recieves a
+      <a data-cite="rfc7231#section-6.5.9">410 Gone</a> status code from the
+      site then it should remove the feed from the <a>media feed store</a>.
     </p>
 
     <p>

@@ -32,7 +32,13 @@ Media Feeds provides a way for user agents to discover such feeds and provides a
 
 ## API Design
 
-The website should advertise a media feed to the user agent through the [Web App Manifest](https://www.w3.org/TR/appmanifest/). A media_feed_url will be added to the [WebAppManifest](https://www.w3.org/TR/appmanifest/#webappmanifest-dictionary) dictionary. The `media_feed_url` should be on the same origin as the document URL that embedded the manifest (similar to [start_url](https://www.w3.org/TR/appmanifest/#start_url-member)). A user agent will automatically discover the media feed from the manifest and store it to be fetched later. If the `media_feed_url` is removed from the manifest then the user agent will delete the media feed.
+The website should advertise a media feed to the user agent by adding a `link` element to the head of the document. The `rel` attribute should be set to `feed` and the type should be set to `application/ld+json`. The `href` attribute should be on the same origin as the document URL. A user agent will automatically discover the media feed and store it to be fetched later.
+
+```html
+<head>
+  <link rel="feed" type="application/ld+json" href="https://www.example.com/media-feed">
+</head>
+```
 
 Media Feeds should be [valid JSON+LD documents](https://www.w3.org/TR/json-ld11/#dfn-json-ld-document) and contain data using the existing [schema.org](https://schema.org) standard. The user agent will fetch the media feed using a `GET` request with the appropriate cookies, caching headers and the accept header will be set to `application/ld+json`.
 
