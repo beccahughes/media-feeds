@@ -74,8 +74,6 @@ The feed will contain a number of media items that are recommendations relevant 
 
 There are some examples in the sections below about how these media items can be used for different use cases.
 
-If a site returns a DataFeed the user agent will merge this data with recommendations that were previously fetched. A site can use a [CompleteDataFeed](https://schema.org/CompleteDataFeed) to indicate that old recommendations can be safely discarded when the feed is fetched. If the user agent merges data then this will use the contents of the `@id` property.
-
 A site should make use of appropriate [Cache-Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) headers and return a `304 Not Modified` response if the content has not changed. The [Cache-Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) and [Expires](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expires) headers can be used to suggest to the user agent about when a feed should be re-fetched. The user agent will make a decision about how often to fetch the feed based on a minimum/maximum value and based on user interaction.
 
 ### A site recommends a generic video to a user
