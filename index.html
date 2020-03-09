@@ -298,6 +298,12 @@
       </p>
 
       <p>
+        Every <a>media feed item</a> MUST have a <dfn>media item ID</dfn>
+        that is unique within the <a>media feed document</a> and is a valid
+        <a data-cite="url#urls">URL</a>.
+      </p>
+
+      <p>
         The user agent MUST validate every <a>media feed item</a> using the
         following steps:
 
@@ -308,8 +314,7 @@
           </li>
           <li>
             The <a data-cite="json-ld11#node-identifiers">@id</a> property MUST
-            be set and contain a valid <a data-cite="rfc3987#">IRI</a> that is
-            unique within the <a>media feed document</a>.
+            be set and contain a valid <a>media item ID</a>.
           </li>
           <li>
             The <a data-cite="schema-org/name#">name</a> property MUST contain
@@ -398,6 +403,23 @@
                 <a>media item season</a>.
               </li>
             </ul>
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        When a user agent wants to open the <a>media feed item</a> it should
+        open the <dfn>media feed item url</dfn>. In order to determine this the
+        user agent MUST run the following steps:
+
+        <ul>
+          <li>
+            If there is a <a>media item action</a> with a valid
+            <a data-cite="schema-org/target#">target</a> property set. Then
+            return the value of the property
+          </li>
+          <li>
+            Otherwise, return the <a>media item ID</a>
           </li>
         </ul>
       </p>
