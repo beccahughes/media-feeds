@@ -473,4 +473,4 @@ In schema.org any object can have a number of [identifier](https://schema.org/id
 }
 ```
   
-A site can [embed a schema.org media item](https://github.com/beccahughes/structured-data-for-media/blob/master/in-page-data-explainer.md) object in an HTML page contained within a `<script>` tag. If the user agent is also collecting this metadata then the identifiers can be used to de-duplicate across these two sources.
+A list of known identifiers is [available here](third-party-identifiers.md).
