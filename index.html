@@ -15,8 +15,7 @@
         email: "beccahughes@chromium.org",
         company: "Google LLC"
       },
-      // Add additional editors here.
-      // https://github.com/w3c/respec/wiki/editors
+      // Add additional editors here. https://github.com/w3c/respec/wiki/editors
     ],
     "shortName": "media-feeds",
     "specStatus": "CG-DRAFT",
@@ -44,13 +43,13 @@
     </p>
 
     <p>
-      Media is used extensively today, and the Web is one of the primary
-      means of consuming media content. Many browsers show content
-      recommendations in their UI. This specification aims to enable web
-      sites to specify a feed of personalized media recommendations that
-      can be fetched by the browser and displayed in the browser UI. By
-      improving media discovery this would improve the user experience
-      as well as providing web sites with a new way of reaching users.
+      Media is used extensively today, and the Web is one of the primary means
+      of consuming media content. Many browsers show content recommendations in
+      their UI. This specification aims to enable web sites to specify a feed of
+      personalized media recommendations that can be fetched by the browser and
+      displayed in the browser UI. By improving media discovery this would
+      improve the user experience as well as providing web sites with a new way
+      of reaching users.
     </p>
   </section>
 
@@ -58,6 +57,12 @@
     <p>
       Unless otherwise stated, string comparisons are done in a
       <a data-cite="HTML#case-sensitive">case-sensitive</a> manner.
+    </p>
+
+    <p>
+      In this document when we compare a string that starts with or equals
+      <code>https://schema.org</code> then <code>http://schema.org</code> is
+      valid too.
     </p>
   </section>
 
@@ -125,11 +130,10 @@
       The user agent MUST initiate a <a data-cite="FETCH#fetching">fetch</a>
       with the <a data-cite="FETCH#concept-header-list">header list</a>
       containing the <a data-cite="rfc7231#header.accept">accept header</a> set
-      to <a data-cite="json-ld11#iana-considerations">application/ld+json</a>
-      and the <a data-cite="FETCH#concept-request-redirect-mode">redirect
-      mode</a> set to <code>error</code>. The site will return the
-      <dfn>media feed document</dfn> which MUST be a
-      <a data-cite="json-ld11#dfn-json-ld-document">valid JSON+LD</a> document</a>.
+      to <a data-cite="json-ld11#iana-considerations">application/ld+json</a>.
+      The site will return the <dfn>media feed document</dfn> which MUST be a
+      <a data-cite="json-ld11#dfn-json-ld-document">valid JSON+LD</a>
+      document</a>.
     </p>
 
     <p>
@@ -138,97 +142,288 @@
       site then it should remove the feed from the <a>media feed store</a>.
     </p>
 
-    <p>
-      The <a>media feed document</a> should be a
-      <a data-cite="schema-org/DataFeed#">DataFeed</a>. This has a
-      <a data-cite="schema-org/provider#">provider</a> property that contains
-      an <a data-cite="schema-org/Organization#">Organization</a> to describe
-      the <dfn>publishing web site</dfn>. The
-      <a data-cite="schema-org/member#">member</a> field on
-      <a data-cite="schema-org/Organization#">Organization</a> should
-      contain a <a data-cite="schema-org/Person#">Person</a> that contains the
-      details about the <dfn>currently logged in user</dfn>. The user agent can
-      show this to the user to identifier which account the recommendations are
-      coming from. This is especially important if the media site supports
-      multiple profiles.
-    </p>
+    <section id="media-feed-document">
+      <h3>Media Feed Document</h2>
 
-    <p>
-      The user agent MUST validate the <a>media feed document</a> using the
-      following steps:
+      <p>
+        The <a>media feed document</a> should be a
+        <a data-cite="schema-org/DataFeed#">DataFeed</a>. This has a
+        <a data-cite="schema-org/provider#">provider</a> property that contains
+        an <a data-cite="schema-org/Organization#">Organization</a> to describe
+        the <dfn>publishing web site</dfn>. The
+        <a data-cite="schema-org/member#">member</a> field on
+        <a data-cite="schema-org/Organization#">Organization</a> should
+        contain a <a data-cite="schema-org/Person#">Person</a> that contains the
+        details about the <dfn>currently logged in user</dfn>. The user agent can
+        show this to the user to identifier which account the recommendations are
+        coming from. This is especially important if the media site supports
+        multiple profiles.
+      </p>
 
-      <ul>
-        <li>
-          The <a data-cite="json-ld11#the-context">context</a> MUST be set to
-          <code>https://schema.org</code>.
-        </li>
-        <li>
-          The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
-          set to <a data-cite="schema-org/DataFeed#">DataFeed</a>.
-        </li>
-        <li>
-          The <a data-cite="schema-org/member#">provider</a> property MUST
-          contain a <a data-cite="schema-org/Organization#">Organization</a>
-          that is a valid <a>publishing web site</a>.
-        </li>
-        <li>
-          The <a data-cite="schema-org/dataFeedElement#">dataFeedElement</a>
-          property SHOULD be present. If present, it MUST contain valid
-          <a>media feed items</a>.
-        </li>
-      </ul>
-    </p>
+      <p>
+        The user agent MUST validate the <a>media feed document</a> using the
+        following steps:
 
-    <p>
-      The user agent MUST validate the <a>publishing web site</a> using
-      the following steps:
+        <ul>
+          <li>
+            The <a data-cite="json-ld11#the-context">context</a> MUST be set to
+            <code>https://schema.org</code>.
+          </li>
+          <li>
+            The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+            set to <a data-cite="schema-org/DataFeed#">DataFeed</a> OR
+            <a data-cite="schema-org/CompleteDataFeed#">CompleteDataFeed</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/member#">provider</a> property MUST
+            contain a <a data-cite="schema-org/Organization#">Organization</a>
+            that is a valid <a>publishing web site</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/dataFeedElement#">dataFeedElement</a>
+            property SHOULD be present. If present, it MUST contain valid
+            <a>media feed items</a>.
+          </li>
+        </ul>
+      </p>
 
-      <ul>
-        <li>
-          The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
-          set to <a data-cite="schema-org/Organization#">Organization</a>.
-        </li>
-        <li>
-          The <a data-cite="schema-org/name#">name</a> property MUST contain
-          a valid non-empty string.
-        </li>
-        <li>
-          The <a data-cite="schema-org/logo#">logo</a> property MUST contain
-          a valid <a data-cite="url#urls">URL</a>.
-        </li>
-        <li>
-          The <a data-cite="schema-org/member#">member</a> property MUST
-          contain a <a data-cite="schema-org/Person#">Person</a> that is a
-          valid <a>currently logged in user</a>.
-        </li>
-      </ul>
-    </p>
+      <p>
+        The user agent MUST validate the <a>publishing web site</a> using the
+        following steps:
 
-    <p>
-      The user agent MUST validate the <a>currently logged in user</a> using
-      the following steps:
+        <ul>
+          <li>
+            The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+            set to <a data-cite="schema-org/Organization#">Organization</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/name#">name</a> property MUST contain a
+            valid non-empty string.
+          </li>
+          <li>
+            The <a data-cite="schema-org/logo#">logo</a> property MUST contain a
+            valid <a>media image</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/member#">member</a> property MUST
+            contain a <a data-cite="schema-org/Person#">Person</a> that is a
+            valid <a>currently logged in user</a>.
+          </li>
+        </ul>
+      </p>
 
-      <ul>
-        <li>
-          The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
-          set to <a data-cite="schema-org/Person#">Person</a>.
-        </li>
-        <li>
-          The <a data-cite="schema-org/name#">name</a> property MUST contain
-          a valid non-empty string.
-        </li>
-        <li>
-          The <a data-cite="schema-org/name#">image</a> property MUST contain
-          a valid <a data-cite="url#urls">URL</a>.
-        </li>
-        <li>
-          The <a data-cite="schema-org/email#">email</a> property SHOULD be
-          present. If present, it MUST contain a valid
-          <a data-cite="EMAIL#section-3.4">email address</a>.
-        </li>
-      </ul>
-    </p>
+      <p>
+        The user agent MUST validate the <a>currently logged in user</a> using
+        the following steps:
 
+        <ul>
+          <li>
+            The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+            set to <a data-cite="schema-org/Person#">Person</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/name#">name</a> property MUST contain a
+            valid non-empty string.
+          </li>
+          <li>
+            The <a data-cite="schema-org/image#">image</a> property MUST contain
+            a valid <a>media image</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/email#">email</a> property SHOULD be
+            present. If present, it MUST contain a valid
+            <a data-cite="EMAIL#section-3.4">email address</a>.
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        If the <a>media feed document</a> has the
+        <a data-cite="json-ld11#specifying-the-type">type</a> set to:
+
+        <ul>
+          <li>
+            <a data-cite="schema-org/CompleteDataFeed#">CompleteDataFeed</a>
+            then the user agent MUST discard any previously stored <a>media feed
+            items</a>.
+          </li>
+          <li>
+            <a data-cite="schema-org/DataFeed#">DataFeed</a> then the user agent
+            MAY retain previously stored <a>media feed items</a>.
+          </li>
+        <ul>
+      </p>
+
+      <div class="example" id="example-1-sample-feed">
+        <div class="marker">
+            <a class="self-link" href="#example-1-sample-feed">
+              Example<bdi> 1</bdi>
+            </a>
+            <span class="example-title">: Sample Media Feed</span>
+        </div>
+        <pre>
+          <code class="json">
+            {
+              "@context": "http://schema.org",
+              "@type": "DataFeed",
+              "dataFeedElement": [
+                ...
+              ]
+              "provider": {
+                "@type": "Organization",
+                "member": {
+                  "@type": "Person",
+                  "email": "beccahughes@chromium.org",
+                  "name": "Becca Hughes",
+                  "image": "https://www.example.org/profile_pic.jpg"
+                },
+                "name": "Media Site",
+                "logo": "https://www.example.org/logo.jpg"
+              }
+            }
+          </code>
+        </pre>
+      </div>
+    </section>
+
+    <section id="media-feed-item">
+      <h3>Media Feed Item</h2>
+
+      <p>
+        A <a>media feed document</a> may contain multiple
+        <dfn>media feed items</dfn>. Each item represents a single item of media
+        to be recommended to the user. Each <a>media feed item</a> must be one
+        of the following <dfn>allowed media types</dfn>:
+
+        <ul>
+          <li>
+            <a data-cite="schema-org/VideoObject#">
+              Thing > CreativeWork > MediaObject > VideoObject
+            </a>
+          </li>
+          <li>
+            <a data-cite="schema-org/Movie#">
+              Thing > CreativeWork > Movie
+            </a>
+          </li>
+          <li>
+            <a data-cite="schema-org/TVEpisode#">
+              Thing > CreativeWork > Episode > TVEpisode
+            </a>
+          </li>
+          <li>
+            <a data-cite="schema-org/TVSeason#">
+              Thing > CreativeWork > CreativeWorkSeason > TVSeason
+            </a>
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        The user agent MUST validate every <a>media feed item</a> using the
+        following steps:
+
+        <ul>
+          <li>
+            The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+            set to an <a>allowed media type</a>.
+          </li>
+          <li>
+            The <a data-cite="json-ld11#node-identifiers">@id</a> property MUST
+            be set and contain a valid <a data-cite="rfc3987#">IRI</a> that is
+            unique within the <a>media feed document</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/name#">name</a> property MUST contain
+            a valid non-empty string.
+          </li>
+          <li>
+            The <a data-cite="schema-org/author#">author</a> property or
+            <a data-cite="schema-org/creator#">creator</a> property MUST
+            contain a valid <a>media item author</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/datePublished#">datePublished</a>
+            property MUST contain a string that is valid date or date time in
+            <a data-cite="ISO8601#">ISO8601 format</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/isFamilyFriendly#">isFamilyFriendly</a>
+            property MUST contain a <a>schema.org boolean property</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/thumbnail#">thumbnail</a> property or
+            <a data-cite="schema-org/image#">image</a> property MUST contain
+            a valid <a>media image</a>.
+          </li>
+        </ul>
+      </p>
+    </section>
+
+    <section id="media-item-author">
+      <h3>Media Item Author</h2>
+
+        <p>
+          The user agent MUST use the following steps to validate a <dfn>media
+          item author</dfn>.
+  
+          <ul>
+            <li>
+              The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+              set to <a data-cite="schema-org/Person#">Person</a>.
+            </li>
+            <li>
+              The <a data-cite="schema-org/name#">name</a> property MUST contain a
+              valid non-empty string.
+            </li>
+            <li>
+              The <a data-cite="schema-org/url#">url</a> property MAY be present
+              If present, it MUST contain a valid
+              <a data-cite="url#urls">URL</a>.
+            </li>
+          </ul>
+        </p>
+    </section>
+
+    <section id="media-image">
+      <h3>Media Image</h2>
+
+        <p>
+          The <dfn>media image</dfn> can be a string containg a valid
+          <a data-cite="url#urls">URL</a> to an image. It can also be an
+          <a data-cite="schema-org/ImageObject#">ImageObject</a>. If it is an
+          <a data-cite="schema-org/ImageObject#">ImageObject</a> then the user
+          agent MUST use the following steps to validate it:
+
+          <ul>
+            <li>
+              The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+              set to <a data-cite="schema-org/ImageObject#">ImageObject</a>.
+            </li>
+            <li>
+              The <a data-cite="schema-org/width#">width</a> property MUST
+              contain a positive integer that is the width of the image in
+              pixels.
+            </li>
+            <li>
+              The <a data-cite="schema-org/height#">height</a> property MUST
+              contain a positive integer that is the height of the image in
+              pixels.
+            </li>
+            <li>
+              The <a data-cite="schema-org/embedUrl#">embedUrl</a> property or
+              <a data-cite="schema-org/url#">url</a> property MUST contain
+              a valid <a data-cite="url#urls">URL</a>.
+            </li>
+          </ul>
+        </p>
+    </section>
+  </section>
+
+  <section id="retrieval-of-common-properties">
+    <h2>Retrieval of Common Properties</h2>
+
+<<<<<<< HEAD
     <div class="example" id="example-1-sample-feed">
       <div class="marker">
           <a class="self-link" href="#example-1-sample-feed">
@@ -259,6 +454,45 @@
         </code>
       </pre>
     </div>
+=======
+    <p>
+      This section describes how a user agent MUST validate different schema.org
+      property types.
+    </p>
+
+    <section id="boolean-retrieval">
+      <h3>Boolean</h3>
+
+      <p>
+        The user agent MUST use the following steps to convert a <dfn>schema.org
+        boolean property</dfn> into a normal boolean:
+
+        <ul>
+          <li>
+            If the property is a <a data-cite="JSON#">JSON boolean</a> type,
+            then return the value
+          </li>
+          <li>
+            If the property is a <a data-cite="JSON#">JSON string</a> type then:
+
+            <ul>
+              <li>
+                If the string value equals <code>https://schema.org/True</code>,
+                then return true
+              </li>
+              <li>
+                If the string value equals <code>https://schema.org/False</code>,
+                then return false
+              </li>
+            </ul>
+          </li>
+          <li>
+            Otherwise, return an error
+          </li>
+        </ul>
+      </p>
+    </section>
+>>>>>>> Add required fields and media feed item
   </section>
 </body>
 
