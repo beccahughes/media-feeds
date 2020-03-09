@@ -382,48 +382,6 @@ If a site wishes to recommend a movie to a user they can use the [Movie](https:/
   } 
 }
 ```
-
-### A site recommends a video with a live video thumbnail
-
-If a site wishes to recommend a video with a live thumbnail they can add a video as a thumbnail. However, they also need to supply the `contentSize` and `encodingFormat`. A site should also still include non-live thumbnails since the user agent may not decide to show them.
-
-```js
-{
-  "@context": "http://schema.org/",
-  "@type": "VideoObject",
-  "@id": "https://example.org/video",
-  "author": {
-    "@type": "Person",
-    "name": "Test User",
-    "url": "https://example.org/testuser"
-  },
-  "datePublished": "2020-01-27",
-  "description": "This is a video that is about a bunny."
-  "duration": "PT5M49S",
-  "genre": "Animated Shorts",
-  "interactionStatistic": {
-    "@type": "InteractionCounter",
-    "interactionType": "http://schema.org/WatchAction",
-    "userInteractionCount": "4356"
-  },
-  "isFamilyFriendly": "http://schema.org/True",
-  "name": "Big Buck Bunny",
-  "thumbnail": {
-    "@type": "ImageObject",
-    "width": 360,
-    "height": 480,
-    "url": "https://example.org/video_thumbnail.png"
-  },
-  "thumbnail": {
-    "@type": "ImageObject",
-    "contentSize": "100kb",
-    "encodingFormat": "video/webm",
-    "width": 360,
-    "height": 480,
-    "embedUrl": "https://example.org/video_thumbnail_live.webm"
-  } 
-}
-```
  
 ### Recommendations around properties
 
