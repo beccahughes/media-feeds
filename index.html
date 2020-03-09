@@ -368,6 +368,11 @@
             <a>media item live metadata</a>.
           </li>
           <li>
+            The <a data-cite="schema-org/identifier#">identifier</a> property
+            supports <a>multiple values</a> and if present it MUST contain
+            a valid <a>media item third party identifier set</a>.
+          </li>
+          <li>
             If the <a>media item type</a> is a
             <a data-cite="schema-org/Movie#">Movie</a> or a
             <a data-cite="schema-org/VideoObject#">VideoObject</a> then the
@@ -682,6 +687,11 @@
               present. If present, it MUST contain a valid non-empty string.
             </li>
             <li>
+              The <a data-cite="schema-org/identifier#">identifier</a> property
+              supports <a>multiple values</a> and if present it MUST contain
+              a valid <a>media item third party identifier set</a>.
+            </li>
+            <li>
               The <a data-cite="schema-org/thumbnail#">thumbnail</a> property or
               <a data-cite="schema-org/image#">image</a> property supports
               <a>multiple values</a> and if present it MUST contain a maximum
@@ -726,6 +736,47 @@
               The <a data-cite="schema-org/embedUrl#">embedUrl</a> property or
               <a data-cite="schema-org/url#">url</a> property MUST contain
               a valid <a data-cite="url#urls">URL</a>.
+            </li>
+          </ul>
+        </p>
+    </section>
+
+    <section id="media-item-identifier">
+      <h3>Media Item Identifier</h2>
+
+        <p>
+          A <dfn>media item third party identifier</dfn> is an identifier for the
+          <a>media feed item</a> in a third-party system. The user agent can use
+          it to cross reference the  <a>media feed item</a> with media data stored
+          in other systems.
+
+          The <dfn>third party identifier name</dfn> identifies the type of the
+          third-party identifier and these are left up to the implementation.
+        
+          The <dfn>media item third party identifier set</dfn> is a set of
+          <a>media item third party identifiers</a> that contain at most one 
+          identifier per <a>third party identifier name</a> for a single
+          <a>media feed item</a>. Any duplicates MAY be ignored by the user
+          agent.
+        </p>
+
+        <p>
+          The user agent MUST use the following steps to validate the
+          <a>media item third party identifier</a>:
+
+          <ul>
+            <li>
+              The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+              set to <a data-cite="schema-org/Identifier#">Identifier</a>.
+            </li>
+            <li>
+              The <a data-cite="schema-org/propertyID#">propertyID</a> property
+              contains the <a>third party identifier name</a> which MUST be a
+              non-empty string.
+            </li>
+            <li>
+              The <a data-cite="schema-org/value#">value</a> property MUST
+              contain a non-empty string.
             </li>
           </ul>
         </p>
