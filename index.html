@@ -372,6 +372,11 @@
             present. If it is present, it MUST be a valid non-empty string.
           </li>
           <li>
+            The <a data-cite="schema-org/publication#">publication</a> property
+            MAY be present. If it is present, it MUST contain a valid
+            <a>media item live metadata</a>.
+          </li>
+          <li>
             If the <a>media item type</a> is a
             <a data-cite="schema-org/Movie#">Movie</a> or a
             <a data-cite="schema-org/VideoObject#">VideoObject</a> then the
@@ -499,6 +504,38 @@
           </ul>
         </p>
     </section>
+
+    <section id="media-item-live-metadata">
+      <h3>Media Item Live Metadata</h2>
+
+        <p>
+          The <dfn>media item live metadata</dfn> should be a
+          be a <a data-cite="schema-org/BroadcastEvent#">BroadcastEvent</a>.
+          The user agent MUST use the following steps to validate it:
+
+          <ul>
+            <li>
+              The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+              set to <a data-cite="schema-org/BroadcastEvent#">BroadcastEvent</a>.
+            </li>
+            <li>
+              The <a data-cite="schema-org/isLiveBroadcast#">isLiveBroadcast</a>
+              property MUST be set to <code>true</code>.
+            </li>
+            <li>
+              The <a data-cite="schema-org/startDate#">startDate</a> property MUST
+              contain a string that is valid date or date time in
+              <a data-cite="ISO8601#">ISO8601 format</a>.
+            </li>
+            <li>
+              The <a data-cite="schema-org/endDate#">endDate</a> property MAY
+              be present. It it is, it MUST contain a string that is valid
+              date or date time in <a data-cite="ISO8601#">ISO8601 format</a>.
+            </li>
+          </ul>
+        </p>
+    </section>
+
 
     <section id="media-item-interaction-statistic">
       <h3>Media Item Interaction Statistic</h2>
