@@ -343,6 +343,11 @@
             contain a valid <a>media item author</a>.
           </li>
           <li>
+            The <a data-cite="schema-org/duration#">duration</a> property MUST
+            contain a string that is valid duration in
+            <a data-cite="ISO8601#">ISO8601 format</a>.
+          </li>
+          <li>
             The <a data-cite="schema-org/datePublished#">datePublished</a>
             property MUST contain a string that is valid date or date time in
             <a data-cite="ISO8601#">ISO8601 format</a>.
@@ -356,16 +361,174 @@
             <a data-cite="schema-org/image#">image</a> property MUST contain
             a valid <a>media image</a>.
           </li>
+          <li>
+            The <a data-cite="schema-org/potentialAction#">
+            potentialAction</a> property MAY be present. It it is present,
+            it MUST either be a single valid <a>media item action</a> or an
+            array of valid <a>media item actions</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/interactionStatistic#">
+            interactionStatistic</a> property MAY be present. It it is present,
+            it MUST be a valid <a>media item interaction statistic</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/contentRating#">
+              contentRating</a> property MAY be present. It it is present,
+            it MUST be a valid <a>media item content rating</a>.
+          </li>
+          <li>
+            The <a data-cite="schema-org/genre#">genre</a> property MAY be
+            present. If it is present, it MUST be a valid non-empty string.
+          </li>
         </ul>
       </p>
+    </section>
+
+    <section id="media-item-action">
+      <h3>Media Item Action</h2>
+
+        <p>
+          The user agent MUST use the following steps to validate a <dfn>media
+          item action</dfn>.
+
+          <ul>
+            <li>
+              The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+              set to <a data-cite="schema-org/WatchAction#">WatchAction</a>.
+            </li>
+            <li>
+              The <a data-cite="schema-org/actionStatus#">actionStatus</a>
+              property MUST be one of the following:
+
+              <ul>
+                <li>
+                  <a data-cite="schema-org/ActiveActionStatus#">
+                    https://schema.org/ActiveActionStatus
+                  </a> for when the action is in progress.
+                </li>
+                <li>
+                  <a data-cite="schema-org/PotentialActionStatus#">
+                    https://schema.org/PotentialActionStatus
+                  </a> for when the action has not been started.
+                </li>
+                <li>
+                  <a data-cite="schema-org/CompletedActionStatus#">
+                    https://schema.org/CompletedActionStatus
+                  </a> for when the action is finished.
+                </li>
+              </ul>
+            </li>
+            <li>
+              If the <a data-cite="schema-org/actionStatus#">actionStatus</a>
+              property is set to <a data-cite="schema-org/ActiveActionStatus#">
+              https://schema.org/ActiveActionStatus</a>, then the
+              <a data-cite="schema-org/startTime#">startTime</a> property MUST
+              contain a valid <a data-cite="xmlschema-2#time">time</a>.
+            </li>
+            <li>
+              The <a data-cite="schema-org/target#">target</a> property MAY be
+              present. If present, it MUST contain a valid
+              <a data-cite="url#urls">URL</a>.
+            </li>
+          </ul>
+        </p>
+    </section>
+
+    <section id="media-item-content-rating">
+      <h3>Media Item Content Rating</h2>
+
+        <p>
+          The <dfn>content rating</dfn> rates the suitability of the <a>media
+          feed item</a> to its audience. It is usually a category that tells
+          which age group is suitable to view the media.
+        </p>
+
+        <p>
+          The <dfn>media item content rating</dfn> can be a non-empty string
+          containing the <a>content rating</a> of the media item. It can also
+          be a <a data-cite="schema-org/Rating#">Rating</a>. If it is a
+          <a data-cite="schema-org/Rating#">Rating</a> then the user
+          agent MUST use the following steps to validate it:
+
+          <ul>
+            <li>
+              The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+              set to <a data-cite="schema-org/Rating#">Rating</a>.
+            </li>
+            <li>
+              The <a data-cite="schema-org/author#">author</a> property MUST
+              contain a valid non-empty string. This is the agency that issued
+              the rating (e.g. MPAA).
+            </li>
+            <li>
+              The <a data-cite="schema-org/ratingValue#">ratingValue</a>
+              property MUST contain a valid non-empty string. This is the
+              <a>content rating</a> that was issued.
+            </li>
+          </ul>
+        </p>
+    </section>
+
+    <section id="media-item-interaction-statistic">
+      <h3>Media Item Interaction Statistic</h2>
+
+        <p>
+          The <dfn>media item interaction statistic</dfn> is a counter that
+          counts how many interactions of a certain type (e.g. likes, views)
+          that a <a>media feed item</a> has.
+        </p>
+
+        <p>
+          The user agent MUST use the following steps to validate it:
+
+          <ul>
+            <li>
+              The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
+              set to <a data-cite="schema-org/InteractionCounter#">
+              InteractionCounter</a>.
+            </li>
+            <li>
+              The <a data-cite="schema-org/interactionType#">interactionType</a>
+              property MUST be one of the following:
+
+              <ul>
+                <li>
+                  <a data-cite="schema-org/WatchAction#">
+                    https://schema.org/WatchAction
+                  </a> for how many views this <a>media feed item</a> has.
+                </li>
+                <li>
+                  <a data-cite="schema-org/LikeAction#">
+                    https://schema.org/LikeAction
+                  </a> for how many likes this <a>media feed item</a> has.
+                </li>
+                <li>
+                  <a data-cite="schema-org/DislikeAction#">
+                    https://schema.org/DislikeAction
+                  </a> for how many dislikes this <a>media feed item</a> has.
+                </li>
+              </ul>
+            </li>
+            <li>
+              The <a data-cite="schema-org/userInteractionCount#">
+              userInteractionCount</a> property MUST contain a number. This can
+              be either a JSON number or a string. This is the count of the
+              interactions that happened.
+            </li>
+          </ul>
+        </p>
     </section>
 
     <section id="media-item-author">
       <h3>Media Item Author</h2>
 
         <p>
-          The user agent MUST use the following steps to validate a <dfn>media
-          item author</dfn>.
+          The <dfn>media item author</dfn> can be a non-empty string containing
+          the name of the author. It can also be a
+          <a data-cite="schema-org/Person#">Person</a>. If it is a
+          <a data-cite="schema-org/Person#">Person</a> then the user
+          agent MUST use the following steps to validate it:
   
           <ul>
             <li>
