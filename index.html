@@ -181,8 +181,8 @@
           </li>
           <li>
             The <a data-cite="schema-org/dataFeedElement#">dataFeedElement</a>
-            property SHOULD be present. If present, it MUST contain valid
-            <a>media feed items</a>.
+            property supports <a>multiple values</a> and if present it MUST
+            contain valid <a>media feed items</a>.
           </li>
         </ul>
       </p>
@@ -336,8 +336,9 @@
           </li>
           <li>
             The <a data-cite="schema-org/thumbnail#">thumbnail</a> property or
-            <a data-cite="schema-org/image#">image</a> property MUST contain
-            a valid <a>media image</a>.
+            <a data-cite="schema-org/image#">image</a> property supports
+            <a>multiple values</a> and MUST contain a maximum of 5 different
+            <a>media images</a>.
           </li>
           <li>
             The <a data-cite="schema-org/potentialAction#">
@@ -347,8 +348,9 @@
           </li>
           <li>
             The <a data-cite="schema-org/interactionStatistic#">
-            interactionStatistic</a> property MAY be present. It it is present,
-            it MUST be a valid <a>media item interaction statistic</a>.
+            interactionStatistic</a> property supports <a>multiple values</a>
+            and if present it MUST contain a maximum of 3
+            <a>media item interaction statistics</a>.
           </li>
           <li>
             The <a data-cite="schema-org/contentRating#">
@@ -356,8 +358,9 @@
             it MUST be a valid <a>media item content rating</a>.
           </li>
           <li>
-            The <a data-cite="schema-org/genre#">genre</a> property MAY be
-            present. If it is present, it MUST be a valid non-empty string.
+            The <a data-cite="schema-org/genre#">genre</a> property supports
+            <a>multiple values</a> and if present it MUST contain a maximum
+            of 5 non-empty strings.
           </li>
           <li>
             The <a data-cite="schema-org/publication#">publication</a> property
@@ -548,7 +551,9 @@
         <p>
           The <dfn>media item interaction statistic</dfn> is a counter that
           counts how many interactions of a certain type (e.g. likes, views)
-          that a <a>media feed item</a> has.
+          that a <a>media feed item</a> has. There can be at most one
+          <a>media item interaction statistic</a> for a certain type for a
+          single <a>media feed item</a>.
         </p>
 
         <p>
@@ -562,7 +567,8 @@
             </li>
             <li>
               The <a data-cite="schema-org/interactionType#">interactionType</a>
-              property MUST be one of the following:
+              property MUST be unique within a <a>media feed item</a> and be
+              one of the following:
 
               <ul>
                 <li>
@@ -677,8 +683,9 @@
             </li>
             <li>
               The <a data-cite="schema-org/thumbnail#">thumbnail</a> property or
-              <a data-cite="schema-org/image#">image</a> property MAY be
-              present. If present, it MUST contain a valid <a>media image</a>.
+              <a data-cite="schema-org/image#">image</a> property supports
+              <a>multiple values</a> and if present it MUST contain a maximum
+              of 5 valid <a>media images</a>.
             </li>
             <li>
               The <a data-cite="schema-org/potentialAction#">
@@ -765,6 +772,69 @@
         </ul>
       </p>
     </section>
+
+    <section id="multiple-values">
+      <h3>Multiple Values</h3>
+
+      <p>
+        If the property supports <dfn>multiple values</dfn> then the values
+        for the property MUST be wrapped in an array. If there is only one
+        value then it MAY be embedded directly. If there is a maximum
+        number of values supported by a <a>multiple value</a> property then
+        these MAY be ignored by the user agent.
+      </p>
+
+      <div class="example" id="example-2-multiple-values">
+        <div class="marker">
+            <a class="self-link" href="#example-2-multiple-values">
+              Example<bdi> 2</bdi>
+            </a>
+            <span class="example-title">: Multiple Values</span>
+        </div>
+
+        <p>
+          If there are multiple values for a property then a JSON array
+          can be used. For example with the <code>genre</code>
+          property example below their are two genres specified:
+        </p>
+
+        <pre>
+          <code class="json">
+            {
+              "@context": "https://schema.org/",
+              "@type": "VideoObject",
+              ...
+
+              "genre": {
+                "Action",
+                "Comedy"
+              },
+
+              ...
+            }
+          </code>
+        </pre>
+
+        <p>
+          If there is only one value it can be embedded directly in the
+          property without needing an array.
+        </p>
+
+        <pre>
+          <code class="json">
+            {
+              "@context": "https://schema.org/",
+              "@type": "VideoObject",
+              ...
+
+              "genre": "Action",
+
+              ...
+            }
+          </code>
+        </pre>
+      </div>
+    </section>
   </section>
 
   <section id="continue-watching-play-next">
@@ -777,10 +847,10 @@
       https://schema.org/ActiveActionStatus</a> to indicate this.
     </p>
 
-    <div class="example" id="example-2-continue-watching">
+    <div class="example" id="example-3-continue-watching">
       <div class="marker">
-          <a class="self-link" href="#example-2-continue-watching">
-            Example<bdi> 2</bdi>
+          <a class="self-link" href="#example-3-continue-watching">
+            Example<bdi> 3</bdi>
           </a>
           <span class="example-title">: Continue Watching</span>
       </div>
