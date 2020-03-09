@@ -147,10 +147,10 @@
 
       <p>
         The <a>media feed document</a> should be a
-        <a data-cite="schema-org/DataFeed#">DataFeed</a>. This has a
-        <a data-cite="schema-org/provider#">provider</a> property that contains
-        an <a data-cite="schema-org/Organization#">Organization</a> to describe
-        the <dfn>publishing web site</dfn>. The
+        <a data-cite="schema-org/CompleteDataFeed#">CompleteDataFeed</a>. This
+        has a <a data-cite="schema-org/provider#">provider</a> property that
+        contains an <a data-cite="schema-org/Organization#">Organization</a> to
+        describe the <dfn>publishing web site</dfn>. The
         <a data-cite="schema-org/member#">member</a> field on
         <a data-cite="schema-org/Organization#">Organization</a> should
         contain a <a data-cite="schema-org/Person#">Person</a> that contains the
@@ -171,7 +171,7 @@
           </li>
           <li>
             The <a data-cite="json-ld11#specifying-the-type">type</a> MUST be
-            set to <a data-cite="schema-org/DataFeed#">DataFeed</a> OR
+            set to
             <a data-cite="schema-org/CompleteDataFeed#">CompleteDataFeed</a>.
           </li>
           <li>
@@ -237,23 +237,6 @@
         </ul>
       </p>
 
-      <p>
-        If the <a>media feed document</a> has the
-        <a data-cite="json-ld11#specifying-the-type">type</a> set to:
-
-        <ul>
-          <li>
-            <a data-cite="schema-org/CompleteDataFeed#">CompleteDataFeed</a>
-            then the user agent MUST discard any previously stored <a>media feed
-            items</a>.
-          </li>
-          <li>
-            <a data-cite="schema-org/DataFeed#">DataFeed</a> then the user agent
-            MAY retain previously stored <a>media feed items</a>.
-          </li>
-        <ul>
-      </p>
-
       <div class="example" id="example-1-sample-feed">
         <div class="marker">
             <a class="self-link" href="#example-1-sample-feed">
@@ -265,7 +248,7 @@
           <code class="json">
             {
               "@context": "http://schema.org",
-              "@type": "DataFeed",
+              "@type": "CompleteDataFeed",
               "dataFeedElement": [
                 ...
               ]
@@ -723,38 +706,6 @@
   <section id="retrieval-of-common-properties">
     <h2>Retrieval of Common Properties</h2>
 
-<<<<<<< HEAD
-    <div class="example" id="example-1-sample-feed">
-      <div class="marker">
-          <a class="self-link" href="#example-1-sample-feed">
-            Example<bdi> 1</bdi>
-          </a>
-          <span class="example-title">: Sample Media Feed</span>
-      </div> 
-      <pre>
-        <code class="json">
-          {
-            "@context": "http://schema.org",
-            "@type": "DataFeed",
-            "dataFeedElement": [
-              ...
-            ]
-            "provider": {
-              "@type": "Organization",
-              "member": {
-                "@type": "Person",
-                "email": "beccahughes@chromium.org",
-                "name": "Becca Hughes",
-                "image": "https://www.example.org/profile_pic.jpg"
-              },
-              "name": "Media Site",
-              "logo": "https://www.example.org/logo.jpg" 
-            }
-          }
-        </code>
-      </pre>
-    </div>
-=======
     <p>
       This section describes how a user agent MUST validate different schema.org
       property types.
@@ -792,7 +743,6 @@
         </ul>
       </p>
     </section>
->>>>>>> Add required fields and media feed item
   </section>
 
   <section id="continue-watching-play-next">

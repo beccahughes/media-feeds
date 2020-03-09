@@ -45,7 +45,7 @@ Media Feeds should be [valid JSON+LD documents](https://www.w3.org/TR/json-ld11/
 ```js
 {
   "@context": "http://schema.org",
-  "@type": "DataFeed",
+  "@type": "CompleteDataFeed",
   "dataFeedElement": [
     { <MEDIA FEED OBJECT 01> },
     { <MEDIA FEED OBJECT 02> },
@@ -66,7 +66,7 @@ Media Feeds should be [valid JSON+LD documents](https://www.w3.org/TR/json-ld11/
 }
 ```
 
-The site should return a schema.org [DataFeed](https://schema.org/DataFeed). This has a [provider](https://schema.org/provider) property that uses [Organization](https://schema.org/Organization) to describe the site that publishes the feed. This can be used by the user agent to show the name and logo of the site. The [member](https://schema.org/member) field on Organization should contain a [Person](https://schema.org/Person) that contains the details about the currently logged in user. This should contain the email, name and image of the user. The user agent can show this to the user to identifier which account the recommendations are coming from. This is especially important if the media site supports multiple profiles.
+The site should return a schema.org [CompleteDataFeed](https://schema.org/CompleteDataFeed). This has a [provider](https://schema.org/provider) property that uses [Organization](https://schema.org/Organization) to describe the site that publishes the feed. This can be used by the user agent to show the name and logo of the site. The [member](https://schema.org/member) field on Organization should contain a [Person](https://schema.org/Person) that contains the details about the currently logged in user. This should contain the email, name and image of the user. The user agent can show this to the user to identifier which account the recommendations are coming from. This is especially important if the media site supports multiple profiles.
 
 The feed will contain a number of media items that are recommendations relevant to the logged-in user or generic if the user is not logged in. These are stored in the `dataFeedElement` property and should all have a unique `@id` which can be the URL of the content. The media items should be one of the following types:
 
