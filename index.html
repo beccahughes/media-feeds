@@ -128,9 +128,23 @@
 
     <p>
       The user agent MUST initiate a <a data-cite="FETCH#fetching">fetch</a>
-      with the <a data-cite="FETCH#concept-header-list">header list</a>
-      containing the <a data-cite="rfc7231#header.accept">accept header</a> set
-      to <a data-cite="json-ld11#iana-considerations">application/ld+json</a>.
+      with the following <a data-cite="FETCH#concept-request">request</a>
+      parameters:
+
+      <ul>
+        <li>
+          <a data-cite="FETCH#concept-header-list">header list</a>
+          containing the <a data-cite="rfc7231#header.accept">accept header</a> set
+          to <a data-cite="json-ld11#iana-considerations">application/ld+json</a>
+        </li>
+        <li>
+          <a data-cite="FETCH#concept-request-redirect-mode">request mode</a> set to
+          <code>error</code>
+        </li>
+      </ul>
+    </p>
+
+    <p>
       The site will return the <dfn>media feed document</dfn> which MUST be a
       <a data-cite="json-ld11#dfn-json-ld-document">valid JSON+LD</a>
       document</a>.
