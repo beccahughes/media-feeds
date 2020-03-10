@@ -82,7 +82,7 @@ A site should make use of appropriate [Cache-Control](https://developer.mozilla.
 
 ### A site recommends a generic video to a user
 
-If a site wishes to recommend a generic video to a user they can use the [VideoObject](https://schema.org/VideoObject) media item type.
+If a site wishes to recommend a generic video to a user they can use the [VideoObject](https://schema.org/VideoObject) media item type. The URL to watch the video is stored in the [potentialAction](https://schema.org/potentialAction) property.
   
 ```js
 {
@@ -105,6 +105,10 @@ If a site wishes to recommend a generic video to a user they can use the [VideoO
   },
   "isFamilyFriendly": "http://schema.org/True",
   "name": "Big Buck Bunny",
+  "potentialAction": {
+    "@type": "WatchAction",
+    "target": "https://example.org/watch/video"
+  },
   "thumbnail": {
     "@type": "ImageObject",
     "width": 360,
@@ -303,6 +307,10 @@ If a site wishes to recommend a TV series to a user they can use the [TVSeries](
   "genre": "Documentaries",
   "isFamilyFriendly": "http://schema.org/True",
   "name": "Cool TV Series",
+  "potentialAction": {
+    "@type": "WatchAction",
+    "target": "https://example.org/watch/tv-series"
+  },
   "thumbnail": {
     "@type": "ImageObject",
     "width": 360,
@@ -337,6 +345,10 @@ If a site wishes to recommend some live video content to a user they can add a [
   },
   "isFamilyFriendly": "http://schema.org/True",
   "name": "Big Buck Bunny",
+  "potentialAction": {
+    "@type": "WatchAction",
+    "target": "https://example.org/watch/video"
+  },
   "publication": {
     "@type": "BroadcastEvent",
     "isLiveBroadcast": "http://schema.org/True",
@@ -374,12 +386,17 @@ If a site wishes to recommend a movie to a user they can use the [Movie](https:/
   "genre": "Animated",
   "isFamilyFriendly": "http://schema.org/True",
   "name": "Dream",
+  "potentialAction": {
+    "@type": "WatchAction",
+    "target": "https://example.org/watch/movie"
+  },
   "thumbnail": {
     "@type": "ImageObject",
     "width": 360,
     "height": 480,
     "url": "https://example.org/movie_thumbnail.png",
-  } 
+  },
+  "url": "https://example.org/watch/dream"
 }
 ```
  
@@ -400,6 +417,8 @@ It is **required** that all media items should have the following properties:
 6. `isFamilyFriendly` - if the content is family friendly
     
 7. `thumbnail` or `image` - artwork to be displayed by the user agent. We recommend that these are [ImageObject](https://schema.org/ImageObject). This allows the user agent to pick the right artwork based on the size
+
+8. `potentialAction` - the action to watch the media. If the object is a [TVSeries](https://schema.org/TVSeries) and has an embedded [TVEpisode](https://schema.org/TVEpisode) then the `potentialAction` is only required on the [TVEpisode](https://schema.org/TVEpisode)
     
 It is *suggested* that the media items have the following properties:
 
@@ -411,11 +430,11 @@ It is *suggested* that the media items have the following properties:
 
 WatchActions should be present in the `potentialAction` property and have the following requirements:
 
-1. The `actionStatus` field **must be** one of `ActiveActionStatus`, `PotentialActionStatus` or `CompletedActionStatus`
+1. The `actionStatus` field **is recommended**. If present, it must be one of `ActiveActionStatus`, `PotentialActionStatus` or `CompletedActionStatus`
     
 2. If the `actionStatus` is `ActiveActionStatus` the `startTime` **must be** present
     
-3. A `target` URL is optional but recommended
+3. A `target` URL **must be** present
 
 If an object is a TV season the following properties **are required**:
 

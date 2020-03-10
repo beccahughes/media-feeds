@@ -377,9 +377,8 @@
           </li>
           <li>
             The <a data-cite="schema-org/potentialAction#">
-            potentialAction</a> property MAY be present. It it is present,
-            it MUST either be a single valid <a>media item action</a> or an
-            array of valid <a>media item actions</a>.
+            potentialAction</a> property MUST be a valid <a>media item
+            action</a> unless the object has an <a>embedded watch action</a>.
           </li>
           <li>
             The <a data-cite="schema-org/interactionStatistic#">
@@ -449,23 +448,6 @@
           </li>
         </ul>
       </p>
-
-      <p>
-        When a user agent wants to open the <a>media feed item</a> it should
-        open the <dfn>media feed item url</dfn>. In order to determine this the
-        user agent MUST run the following steps:
-
-        <ul>
-          <li>
-            If there is a <a>media item action</a> with a valid
-            <a data-cite="schema-org/target#">target</a> property set. Then
-            return the value of the property
-          </li>
-          <li>
-            Otherwise, return the <a>media item ID</a>
-          </li>
-        </ul>
-      </p>
     </section>
 
     <section id="media-item-action">
@@ -473,7 +455,9 @@
 
         <p>
           The user agent MUST use the following steps to validate a <dfn>media
-          item action</dfn>.
+          item action</dfn>. The action contains the
+          <dfn>media feed item url</dfn> which is used by the user agent to
+          launch the media item.
 
           <ul>
             <li>
@@ -482,7 +466,8 @@
             </li>
             <li>
               The <a data-cite="schema-org/actionStatus#">actionStatus</a>
-              property MUST be one of the following:
+              property MAY be present. If present it MUST be one of the
+              following:
 
               <ul>
                 <li>
@@ -510,9 +495,8 @@
               contain a valid <a data-cite="xmlschema-2#time">time</a>.
             </li>
             <li>
-              The <a data-cite="schema-org/target#">target</a> property MAY be
-              present. If present, it MUST contain a valid
-              <a data-cite="url#urls">URL</a>.
+              The <a data-cite="schema-org/target#">target</a> property MUST
+              contain a valid <a data-cite="url#urls">URL</a>.
             </li>
           </ul>
         </p>
@@ -703,7 +687,10 @@
       <h3>Media Item Episode</h2>
 
         <p>
-          The <dfn>media item episode</dfn> represents a single TV episode.
+          The <dfn>media item episode</dfn> represents a single TV episode. It
+          contains an <dfn>embedded watch action</dfn> stored in the
+          <a data-cite="schema-org/potentialAction#">potentialAction</a>
+          property.
         </p>
 
         <p>
@@ -735,9 +722,8 @@
             </li>
             <li>
               The <a data-cite="schema-org/potentialAction#">
-              potentialAction</a> property MAY be present. It it is present,
-              it MUST either be a single valid <a>media item action</a> or an
-              array of valid <a>media item actions</a>.
+              potentialAction</a> property MUST contain a valid
+              <a>media item action</a>.
             </li>
           </ul>
         </p>
