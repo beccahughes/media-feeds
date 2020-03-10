@@ -66,6 +66,27 @@
     </p>
   </section>
 
+  <section id="security-privacy-considerations">
+    <h2>Security and Privacy Considerations</h2>
+    <p>
+      <em>This section is non-normative.</em>
+    </p>
+
+    <p>
+      The API introduced in this specification has very low impact with regards
+      to security and privacy. The user agent should take care if fetching feeds
+      based on heuristics. The site may also be able to see when their feed
+      content is clicked by adding tracking to the <a>media feed item url</a> or
+      to the <a>media image</a> url.
+    </p>
+
+    <p>
+      For privacy purposes, the user agent should disable the feature in incognito
+      mode. This is because the lifetime of the incognito mode session is not long
+      enough for this feature to be useful.
+    </p>
+  </section>
+
   <section id="model">
     <h2>Model</h2>
 
