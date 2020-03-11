@@ -1,4 +1,3 @@
 # Media Feeds API
 
-This is the repository for Media Feeds API. You're welcome to
-[contribute](CONTRIBUTING.md)!
+Moved to [WICG/media-feeds-API](https://github.com/WICG/media-feeds-api)
